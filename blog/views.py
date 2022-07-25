@@ -43,3 +43,7 @@ def detail(request,blog_id):
     else:
         comment_form = CommentForm()
     return render(request,'blog/detail.html', {"blog":blog, "comment_form":comment_form, "all_comments":all_comments})
+
+'''
+hui pizda djigurda
+'''
