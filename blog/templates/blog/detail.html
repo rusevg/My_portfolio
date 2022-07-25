@@ -1,0 +1,47 @@
+{% extends 'our_portfolio/base.html' %}
+{% block content %}
+
+<center><h1>{{ blog.title }}</h1></center>
+<br>
+<h3>{{ blog.date }}</h3>
+<p>{{ blog.description|safe }}</p>
+
+
+<br>
+<center><h3>Comments</h3></center>
+<hr>
+  {% for comment in all_comments %}
+    <div class="comment">
+      <p class="info">
+        <b>{{ comment.name }} has written:</b>
+        <br>
+        {{ comment.body }}
+        <br>
+        <hr>
+      </<p></p>
+      </div>
+  {% empty %}
+    <p>There are no comments yet.</p>
+  {% endfor %}
+  {% if comment %}
+    <h2>Your comment has been added.</h2>
+  {% else %}
+  <br>
+    <form action='.' method='post'>
+      {% csrf_token %}
+      Name:
+      <br>
+      {{ comment_form.name }}
+      <br>
+      Email:
+      <br>
+      {{ comment_form.email }}
+      <br>
+      Comment:
+      <br>
+      {{ comment_form.body }}
+      <br>
+      <p><input class="btn btn-primary" type="submit" value="Add comment"></p>
+    </form>
+{% endif %}
+{% endblock %}
